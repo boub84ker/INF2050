@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?> 
+	<project>
+<modelVersion>4.0.0</modelVersion>
+
+<groupId>INF2050</groupId>  
+<artifactId>livrable2</artifactId>
+<version>0.1-SNAPSHOT</version>
+<properties>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
+</properties> 
+
+
+ <dependencies> 
+ <dependency>
+<groupId>commons-lang</groupId> 
+<artifactId>commons-lang</artifactId>   
+<version>2.0</version>   
+</dependency> 
+
+<!--ajouter le package com.fasterxml.jackson.databind pour compiler  (https://stackoverflow.com/questions/28049687/maven-cant-download-fasterxml-jackson/28050041) -->
+  <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.5.0</version>
+        
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.5.0</version>
+        
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.5.0</version>
+        
+    </dependency>
+
+<!--pour faire le test -->
+
+<dependency>
+<groupId>org.junit.jupiter</groupId> 
+<artifactId>junit-jupiter-api</artifactId>
+<version>5.3.2</version>  
+<scope>test</scope>
+</dependency>
+ 
+<dependency> 
+<groupId>org.junit.jupiter</groupId>
+<artifactId>junit-jupiter-engine</artifactId> 
+<version>5.3.2</version>    
+<scope>test</scope>
+</dependency>   
+
+
+
+</dependencies> 
+
+ <build>
+<plugins> 
+<plugin>   
+<groupId>org.apache.maven.plugins</groupId> 
+<artifactId>maven-compiler-plugin</artifactId> 
+ <version>3.8.0</version>  
+<configuration>   
+<release>11</release>    
+ </configuration> 
+</plugin> 
+
+<!--pour faire le test -->
+ <plugin> 
+ <artifactId>maven-surefire-plugin</artifactId>
+ <version>2.22.0</version>
+</plugin>
+
+<plugin>
+   <groupId>org.apache.maven.plugins</groupId>
+   <artifactId>maven-jar-plugin</artifactId>  
+   <version>3.1.1</version> 
+   <configuration>  
+    <archive> 
+     <manifest> 
+     <addClasspath>true</addClasspath>  
+     <mainClass>Application</mainClass>   
+     </manifest>   
+    </archive>   
+   </configuration>   
+</plugin> 
+
+<plugin>
+   <groupId>org.apache.maven.plugins</groupId> 
+   <artifactId>maven-shade-plugin</artifactId>   
+   <version>3.2.1</version>  
+     <configuration>    
+      <shadedArtifactAttached>true</shadedArtifactAttached> 
+      <shadedClassifierName>dependencies-all</shadedClassifierName> 
+     </configuration> 
+         
+   <executions> 
+     <execution>    
+     <phase>package</phase> 
+      <goals>   
+      <goal>shade</goal> 
+      </goals>   
+     </execution>    
+    </executions>  
+</plugin> 
+ 
+
+</plugins> 
+</build> 
+
+</project>
